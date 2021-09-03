@@ -32,4 +32,11 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         Assert.assertEquals(10, calc.Add("1\n2,3\n4"));
     }
+
+    @Test
+    public void otherDelimitersTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(3, calc.Add("//;\n1;2"));
+        Assert.assertEquals(6, calc.Add("//;\n1;2\n3"));
+    }
 }
