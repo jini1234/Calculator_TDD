@@ -49,4 +49,14 @@ public class StringCalculatorTest {
             Assert.assertEquals("negatives not allowed:-2", e.getMessage());
         }
     }
+
+    @Test
+    public void multipleNegNumberTest() {
+        StringCalculator calc = new StringCalculator();
+        try {
+            calc.Add("//;\n1;-2;-3");
+        } catch (IllegalArgumentException e) {
+            Assert.assertEquals("negatives not allowed:-2,-3", e.getMessage());
+        }
+    }
 }
