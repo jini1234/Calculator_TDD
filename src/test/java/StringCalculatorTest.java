@@ -7,4 +7,17 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         Assert.assertEquals(0, calc.Add(""));
     }
+
+
+    @Test
+    public void oneInputTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(1, calc.Add("1"));
+    }
+
+    @Test
+    public void twoInputTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(3, calc.Add("1,2"));
+    }
 }
