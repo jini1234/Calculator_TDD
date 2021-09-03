@@ -39,4 +39,14 @@ public class StringCalculatorTest {
         Assert.assertEquals(3, calc.Add("//;\n1;2"));
         Assert.assertEquals(6, calc.Add("//;\n1;2\n3"));
     }
+
+    @Test
+    public void negNumberTest() {
+        StringCalculator calc = new StringCalculator();
+        try {
+            calc.Add("//;\n1;-2");
+        } catch (IllegalArgumentException e) {
+            Assert.assertEquals("negatives not allowed:-2", e.getMessage());
+        }
+    }
 }
