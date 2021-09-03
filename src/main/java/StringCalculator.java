@@ -11,14 +11,30 @@ public class StringCalculator {
 
             String[] numsString = numbers.split(delimiter + "|\n");
             int sum = 0;
+            String negs = getNegNumbers(numsString);
+            if (!negs.isEmpty()) {
+                throw new IllegalArgumentException("negatives not allowed:" + negs);
+            }
             for (String num : numsString) {
-                if (isNeg(num)) {
-                    throw new IllegalArgumentException("negatives not allowed:" + num);
-                }
                 sum += Integer.parseInt(num);
             }
             return sum;
         }
+    }
+
+
+    private String getNegNumbers(String[] numsString) {
+        String negs = "";
+        for (String num : numsString) {
+            if (isNeg(num)) {
+                if (negs.isEmpty()) {
+                    negs += num;
+                } else {
+                    negs += ("," + num);
+                }
+            }
+        }
+        return negs;
     }
 
     private boolean isNeg(String num) {
