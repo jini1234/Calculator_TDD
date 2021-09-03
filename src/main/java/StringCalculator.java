@@ -12,10 +12,17 @@ public class StringCalculator {
             String[] numsString = numbers.split(delimiter + "|\n");
             int sum = 0;
             for (String num : numsString) {
+                if (isNeg(num)) {
+                    throw new IllegalArgumentException("negatives not allowed:" + num);
+                }
                 sum += Integer.parseInt(num);
             }
             return sum;
         }
+    }
+
+    private boolean isNeg(String num) {
+        return Integer.parseInt(num) < 0;
     }
 
     private String getNumbers(String numbers) {
