@@ -20,4 +20,11 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         Assert.assertEquals(3, calc.Add("1,2"));
     }
+
+    /** Test for unknown amount of numbers */
+    @Test
+    public void NInputTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(10, calc.Add("1,2,3,4"));
+    }
 }
