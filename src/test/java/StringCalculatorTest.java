@@ -67,4 +67,10 @@ public class StringCalculatorTest {
         calc.Add("1,2");
         Assert.assertEquals(2, calc.GetCalledCount());
     }
+
+    @Test
+    public void ignoreBiggerThanThousandTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(2, calc.Add("2,1001"));
+    }
 }
