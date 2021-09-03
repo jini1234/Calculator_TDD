@@ -73,4 +73,11 @@ public class StringCalculatorTest {
         StringCalculator calc = new StringCalculator();
         Assert.assertEquals(2, calc.Add("2,1001"));
     }
+
+    @Test
+    public void multipleLengthDelimiterTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(6, calc.Add("//[***]\n1***2***3"));
+        Assert.assertEquals(6, calc.Add("//[*;&]\n1*;&2*;&3"));
+    }
 }
