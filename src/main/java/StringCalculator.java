@@ -1,3 +1,5 @@
+import java.util.regex.Pattern;
+
 public class StringCalculator {
     private int calledCount = 0;
 
@@ -11,7 +13,7 @@ public class StringCalculator {
                 delimiter = getDelimiter(numbers);
                 numbers = getNumbers(numbers);
             }
-            String[] numsString = numbers.split(delimiter + "|\n");
+            String[] numsString = numbers.split(Pattern.quote(delimiter) + "|\n");
             String negs = getNegNumbers(numsString);
             if (!negs.isEmpty()) {
                 throw new IllegalArgumentException("negatives not allowed:" + negs);
@@ -58,6 +60,9 @@ public class StringCalculator {
     }
 
     private String getDelimiter(String numbers) {
+        if (numbers.charAt(2) == '[') {
+            return numbers.substring(3, numbers.indexOf("]"));
+        }
         return numbers.substring(2, numbers.indexOf("\n"));
     }
 }
