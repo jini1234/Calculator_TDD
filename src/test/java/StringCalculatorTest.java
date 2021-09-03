@@ -59,4 +59,12 @@ public class StringCalculatorTest {
             Assert.assertEquals("negatives not allowed:-2,-3", e.getMessage());
         }
     }
+
+    @Test
+    public void getCalledCountTest() {
+        StringCalculator calc = new StringCalculator();
+        calc.Add("1");
+        calc.Add("1,2");
+        Assert.assertEquals(2, calc.GetCalledCount());
+    }
 }
