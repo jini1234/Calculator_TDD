@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class StringCalculator {
@@ -13,7 +14,7 @@ public class StringCalculator {
                 delimiter = getDelimiter(numbers);
                 numbers = getNumbers(numbers);
             }
-            String[] numsString = numbers.split(Pattern.quote(delimiter) + "|\n");
+            String[] numsString = numbers.split(delimiter + "|\n");
             String negs = getNegNumbers(numsString);
             if (!negs.isEmpty()) {
                 throw new IllegalArgumentException("negatives not allowed:" + negs);
@@ -61,8 +62,33 @@ public class StringCalculator {
 
     private String getDelimiter(String numbers) {
         if (numbers.charAt(2) == '[') {
-            return numbers.substring(3, numbers.indexOf("]"));
+            return extractDelim(numbers, 3);
         }
         return numbers.substring(2, numbers.indexOf("\n"));
+    }
+
+    private String extractDelim(String numbers, int index) {
+        String delim = "";
+        String newDelim = "";
+        while (numbers.charAt(index) != '\n') {
+            if (numbers.charAt(index) == '[') {
+                newDelim = "";
+            } else if (numbers.charAt(index) == ']') {
+                delim = appendToDelimiter(delim, newDelim);
+            } else {
+                newDelim += numbers.charAt(index);
+            }
+            index++;
+        }
+        return delim;
+    }
+
+    private String appendToDelimiter(String delim, String newDelim) {
+        if (delim.isEmpty()) {
+            delim += Pattern.quote(newDelim);
+        } else {
+            delim += ("|" + Pattern.quote(newDelim));
+        }
+        return delim;
     }
 }
