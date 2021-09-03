@@ -1,5 +1,8 @@
 public class StringCalculator {
+    private int calledCount = 0;
+
     public int Add(String numbers) {
+        calledCount++;
         if (numbers.equals("")) {
             return 0;
         } else {
@@ -8,20 +11,26 @@ public class StringCalculator {
                 delimiter = getDelimiter(numbers);
                 numbers = getNumbers(numbers);
             }
-
             String[] numsString = numbers.split(delimiter + "|\n");
-            int sum = 0;
             String negs = getNegNumbers(numsString);
             if (!negs.isEmpty()) {
                 throw new IllegalArgumentException("negatives not allowed:" + negs);
             }
-            for (String num : numsString) {
-                sum += Integer.parseInt(num);
-            }
-            return sum;
+            return getSum(numsString);
         }
     }
 
+    private int getSum(String[] numsString) {
+        int sum = 0;
+        for (String num : numsString) {
+            sum += Integer.parseInt(num);
+        }
+        return sum;
+    }
+
+    public int GetCalledCount() {
+        return calledCount;
+    }
 
     private String getNegNumbers(String[] numsString) {
         String negs = "";
