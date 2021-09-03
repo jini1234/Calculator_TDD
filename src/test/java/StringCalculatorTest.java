@@ -8,7 +8,6 @@ public class StringCalculatorTest {
         Assert.assertEquals(0, calc.Add(""));
     }
 
-
     @Test
     public void oneInputTest() {
         StringCalculator calc = new StringCalculator();
@@ -26,5 +25,11 @@ public class StringCalculatorTest {
     public void NInputTest() {
         StringCalculator calc = new StringCalculator();
         Assert.assertEquals(10, calc.Add("1,2,3,4"));
+    }
+
+    @Test
+    public void withNewLineTest() {
+        StringCalculator calc = new StringCalculator();
+        Assert.assertEquals(10, calc.Add("1\n2,3\n4"));
     }
 }
