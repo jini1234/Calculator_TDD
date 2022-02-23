@@ -13,13 +13,35 @@ public class StringCalculator {
                 delimiter = getDelimiter(numbers);
                 numbers = getNumbers(numbers);
             }
+
             String[] numsString = numbers.split(delimiter + "|\n");
             String negs = getNegNumbers(numsString);
             if (!negs.isEmpty()) {
                 throw new IllegalArgumentException("negatives not allowed:" + negs);
             }
+            //from delimiter identify if * is there then multiply
+            if(delimiter.contains("*")){
+                return  getMultiplication(numsString);
+            }
+
             return getSum(numsString);
+
         }
+    }
+
+
+
+
+
+    private int getMultiplication(String[] numsString) {
+        int mul = 1;
+        for (String num : numsString) {
+            if (Integer.parseInt(num) > 1000) {
+                continue;
+            }
+            mul *= Integer.parseInt(num);
+        }
+        return mul;
     }
 
     private int getSum(String[] numsString) {
